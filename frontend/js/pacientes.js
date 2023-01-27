@@ -1,11 +1,11 @@
 const tipo = document.getElementById("tipo");
 const nombre = document.getElementById("nombre");
-const dueno = document.getElementById("dueno");
+const obrasocial = document.getElementById("obrasocial");
 const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
 const listaPacientes = document.getElementById("lista-pacientes");
-const url = "https://veterinaria-backend.now.sh/pacientes";
+const url = "";
 
 let pacientes = [];
 
@@ -23,7 +23,7 @@ async function listarPacientes() {
       <th scope="row">${index}</th>
       <td>${paciente.tipo}</td>
       <td>${paciente.nombre}</td>
-      <td>${paciente.dueno}</td>
+      <td>${paciente.obrasocial}</td>
       <td>
           <div class="btn-group" role="group" aria-label="Basic example">
               <button type="button" class="btn btn-info editar"><i class="fas fa-edit"></i></button>
@@ -57,7 +57,7 @@ async function enviarDatos(evento) {
     const datos = {
       tipo: tipo.value,
       nombre: nombre.value,
-      dueno: dueno.value,
+      obrasocial: obrasocial.value,
     };
     let method = "POST";
     let urlEnvio = url;
@@ -91,7 +91,7 @@ function editar(index) {
     $("#exampleModalCenter").modal("toggle");
     const paciente = pacientes[index];
     nombre.value = paciente.nombre;
-    dueno.value = paciente.dueno;
+    obrasocial.value = paciente.obrasocial;
     tipo.value = paciente.tipo;
     indice.value = index;
   };
@@ -99,7 +99,7 @@ function editar(index) {
 
 function resetModal() {
   nombre.value = "";
-  dueno.value = "";
+  obrasocial.value = "";
   tipo.value = "";
   indice.value = "";
   btnGuardar.innerHTML = "Crear";
