@@ -13,39 +13,39 @@ module.exports = (req, res) => {
   // 3. quitar slash
   const rutaLimpia = ruta.replace(/^\/+|\/+$/g, "");
 
-  // 3.1 obtener el método http
+  //  obtener el método http
   const metodo = req.method.toLowerCase();
 
-  //3.1.1 dar permisos de CORS escribiendo los headers
+  // dar permisos de CORS escribiendo los headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "OPTIONS, GET, PUT, DELETE, POST"
   );
-  //3.1.2 dar respuesta inmediata cuando el método sea options
+  // dar respuesta inmediata cuando el método sea options
   if (metodo === "options") {
     res.writeHead(204);
     res.end();
     return;
   }
 
-  // 3.2 obtener variables del query url
+  //  obtener variables del query url
   const { query = {} } = urlParseada;
 
-  // 3.3 obtener headers
+  //  obtener headers
   const { headers = {} } = req;
 
-  // 3.4 obtener payload, en el caso de haber uno
+  //  obtener payload, en el caso de haber uno
   const decoder = new StringDecoder("utf-8");
   let buffer = "";
 
-  // 3.4.1 ir acumulando la data cuando el request reciba un payload
+  //  ir acumulando la data cuando el request reciba un payload
   req.on("data", (data) => {
     buffer += decoder.write(data);
   });
 
-  // 3.4.2 terminar de acumular datos y decirle al decoder que finalice
+  // terminar de acumular datos y decirle al decoder que finalice
   req.on("end", () => {
     buffer += decoder.end();
 
@@ -53,11 +53,11 @@ module.exports = (req, res) => {
       buffer = JSON.parse(buffer);
     }
 
-    //3.4.3 revisar si tiene subrutas en este caso es el indice del array
+    // revisar si tiene subrutas en este caso es el indice del array
     if (rutaLimpia.indexOf("/") > -1) {
       var [rutaPrincipal, indice] = rutaLimpia.split("/");
     }
-    //3.5 ordenar la data del request
+    // ordenar la data del request
     const data = {
       indice,
       ruta: rutaPrincipal || rutaLimpia,
@@ -69,7 +69,7 @@ module.exports = (req, res) => {
 
     console.log({ data });
 
-    // 3.6 elegir el manejador dependiendo de la ruta y asignarle función que el enrutador tiene
+    // elegir el manejador dependiendo de la ruta y asignarle función que el enrutador tiene
     let handler;
     if (data.ruta && enrutador[data.ruta] && enrutador[data.ruta][metodo]) {
       handler = enrutador[data.ruta][metodo];
@@ -88,6 +88,5 @@ module.exports = (req, res) => {
         res.end(respuesta);
       });
     }
-    
   });
 };
