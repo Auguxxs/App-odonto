@@ -5,19 +5,21 @@ const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
 const listaPacientes = document.getElementById("lista-pacientes");
+const url = "http://localhost:5000/pacientes";
 
 let pacientes = [];
 
 async function listarPacientes() {
   try {
-    const respuesta = await fetch("http://localhost:5000/pacientes");
+    const respuesta = await fetch(url);
     const pacientesDelServer = await respuesta.json();
-    if (Array.isArray(pacientesDelServer) && pacientesDelServer.length > 0) {
+    if (Array.isArray(pacientesDelServer)) {
       pacientes = pacientesDelServer;
     }
-    const htmlPacientes = pacientes
-      .map(
-        (paciente, index) => `<tr>
+    if (pacientes.length > 0) {
+      const htmlPacientes = pacientes
+        .map(
+          (paciente, index) => `<tr>
     <th scope="row">${index}</th>
     <td>${paciente.tipo}</td>
     <td>${paciente.nombre}</td>
@@ -29,38 +31,57 @@ async function listarPacientes() {
         </div>
     </td>
   </tr>`
-      )
-      .join("");
-    listaPacientes.innerHTML = htmlPacientes;
-    Array.from(document.getElementsByClassName("editar")).forEach(
-      (botonEditar, index) => (botonEditar.onclick = editar(index))
-    );
-    Array.from(document.getElementsByClassName("eliminar")).forEach(
-      (botonEliminar, index) => (botonEliminar.onclick = eliminar(index))
-    );
+        )
+        .join("");
+      listaPacientes.innerHTML = htmlPacientes;
+      Array.from(document.getElementsByClassName("editar")).forEach(
+        (botonEditar, index) => (botonEditar.onclick = editar(index))
+      );
+      Array.from(document.getElementsByClassName("eliminar")).forEach(
+        (botonEliminar, index) => (botonEliminar.onclick = eliminar(index))
+      );
+      return;
+    }
+    listaPacientes.innerHTML = `<tr>
+    <td colspan="5"> No hay pacientes</td>
+    </tr>`;
   } catch (error) {
-    throw error;
+    console.log({ error });
+    $(".alert").show();
   }
 }
 
 async function enviarDatos(evento) {
   evento.preventDefault();
-  const datos = {
-    tipo: tipo.value,
-    nombre: nombre.value,
-    obrasocial: obrasocial.value,
-  };
-  const accion = btnGuardar.innerHTML;
-  switch (accion) {
-    case "Editar":
+  try {
+    const datos = {
+      tipo: tipo.value,
+      nombre: nombre.value,
+      obrasocial: obrasocial.value,
+    };
+    let method = "POST ";
+    let urlEnvio = url;
+    const accion = btnGuardar.innerHTML;
+    if (accion === "Editar") {
+      method = "PUT";
       pacientes[indice.value] = datos;
-      break;
-    default:
-      pacientes.push(datos);
-      break;
+      urlEnvio = `${url}/indice.value`;
+    }
+    const respuesta = await fetch(urlEnvio, {
+      method,
+      headers: {
+        "Content-Type": "application/json ",
+      },
+      body: JSON.stringify(datos),
+    });
+    if (respuesta.ok) {
+      listarPacientes();
+      resetModal();
+    }
+  } catch (error) {
+    console.log({ error });
+    $(".alert").show();
   }
-  listarPacientes();
-  resetModal();
 }
 
 function editar(index) {
@@ -84,14 +105,22 @@ function resetModal() {
 }
 
 function eliminar(index) {
-  return function clickEnEliminar() {
-    pacientes = pacientes.filter(
-      (paciente, indicePaciente) => indicePaciente !== index
-    );
-    listarPacientes();
+  const urlEnvio = `${url}/${index}`;
+  return async function clickEnEliminar() {
+    try {
+      const respuesta = await fetch(urlEnvio, {
+        method: "DELETE",
+      });
+      if (respuesta.ok) {
+        listarPacientes();
+        resetModal();
+      }
+    } catch (error) {
+      console.log({ error });
+      $(".alert").show();
+    }
   };
   listarPacientes();
 }
-
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
