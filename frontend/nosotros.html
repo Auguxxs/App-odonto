@@ -23,11 +23,7 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v6.2.0/css/v4-shims.css"
     />
-    <link
-      rel="stylesheet"
-      href="/Appod/frontend/css/styles.css"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="./css/styles.css" crossorigin="anonymous" />
   </head>
   <body>
     <div class="container">
@@ -78,14 +74,29 @@
         </div>
       </nav>
       <div class="actions-menu">
-        <button
-          type="button"
-          class="btn btn-dark"
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
-        >
-          Agregar paciente
-        </button>
+        <h1>Odontologos</h1>
+        <div class="actions-menu-content">
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Agregar
+          </button>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Ups!</strong> Algo salio mal, por favor vuelve a intentarlo
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+        </div>
       </div>
       <div
         class="modal fade"
@@ -98,9 +109,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">
-                Nuevo paciente
-              </h5>
+              <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo</h5>
               <button
                 type="button"
                 class="close"
@@ -111,38 +120,40 @@
               </button>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="form">
+                <input type="hidden" id="indice" />
                 <div class="form-row">
                   <div class="col">
                     <input
                       type="text"
-                      class="form-control"
-                      placeholder="Nombre"
-                    />
-                  </div>
-                  <div class="col">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Apellido"
-                    />
-                  </div>
-                  <div class="col">
-                    <input
-                      type="number"
+                      id="documento"
+                      name="documento"
                       class="form-control"
                       placeholder="Documento"
                     />
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">Obra Social</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>obra social 1</option>
-                    <option>obra social 2</option>
-                    <option>obra social 3</option>
-                    <option>obra social 4</option>
-                  </select>
+                <div class="form-row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      class="form-control"
+                      placeholder="Nombre"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <input
+                      type="text"
+                      id="apellido"
+                      name="apellido"
+                      class="form-control"
+                      placeholder="Apellido"
+                    />
+                  </div>
                 </div>
               </form>
             </div>
@@ -165,9 +176,9 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Documento</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -214,17 +225,29 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.13.0/js/v4-shims.js"></script>
-    <script defer src="../Appod/frontend/js/nosotros.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.13.0/js/v4-shims.js"
+    ></script>
+    <script defer src="./js/nosotros.js"></script>
   </body>
 </html>

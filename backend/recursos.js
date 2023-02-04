@@ -1,10 +1,10 @@
 module.exports = {
   pacientes: [
-    { tipo: "Perro", nombre: "Trosky0", obrasocial: "Camilo" },
-    { tipo: "Perro", nombre: "Trosky1", obrasocial: "Camilo" },
-    { tipo: "Perro", nombre: "Trosky2", obrasocial: "Camilo" },
-    { tipo: "Perro", nombre: "Trosky3", obrasocial: "Camilo" },
-    { tipo: "Perro", nombre: "Trosky4", obrasocial: "Camilo" },
+    { tipo: "Perro", nombre: "Trosky0", obrasocial: "ockac" },
+    { tipo: "Perro", nombre: "Trosky1", obrasocial: "ockac" },
+    { tipo: "Perro", nombre: "Trosky2", obrasocial: "Ioscor" },
+    { tipo: "Perro", nombre: "Trosky3", obrasocial: "Ioscor" },
+    { tipo: "Perro", nombre: "Trosky4", obrasocial: "Ioscor" },
   ],
   nosotros: [
     { nombre: "Doctorauno", apellido: "Perez", numero: "1234567890" },
@@ -13,10 +13,10 @@ module.exports = {
     { nombre: "Doctordos", apellido: "Vasquez", numero: "1000666777" },
   ],
   obrasocial: [
-    { nombre: "Ockac" },
-    { nombre: "Ockak" },
-    { nombre: "Ioscor" },
-    { nombre: "Ioscor" },
+    { nombre: "Ockac", numero: "4567890" },
+    { nombre: "Ockak", numero: "1234567890" },
+    { nombre: "Ioscor", numero: "12345670" },
+    { nombre: "Ioscor", numero: "12367890" },
   ],
   consultas: [
     {
