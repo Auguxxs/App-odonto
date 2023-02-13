@@ -1,5 +1,5 @@
 const nombre = document.getElementById("nombre");
-const numero = document.getElementById("numero");
+const documento = document.getElementById("numero");
 const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
