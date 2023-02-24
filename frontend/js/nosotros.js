@@ -5,7 +5,7 @@ const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
 const listaNosotros = document.getElementById("lista-Nosotros");
-const url = "http://localhost:5000/nosotros";
+const url = "https://app-odonto-backend.vercel.app/nosotros";
 let nosotros = [];
 
 async function listarNosotros() {

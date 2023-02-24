@@ -4,7 +4,7 @@ const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
 const listaObrasocial = document.getElementById("lista-obrasocial");
-const url = "http://localhost:5000/obrassociales";
+const url = "https://app-odonto-backend.vercel.app/obrassociales";
 let obrassociales = [];
 
 async function listarObrasociales() {

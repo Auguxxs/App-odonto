@@ -9,7 +9,7 @@ const btnGuardar = document.getElementById("btn-guardar");
 let consultas = [];
 let obraSociales = [];
 let profesionales = [];
-const url = "http://localhost:5000";
+const url = "https://app-odonto-backend.vercel.app";
 
 async function listarConsultas() {
   const entidad = "consultas";

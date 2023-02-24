@@ -5,7 +5,7 @@ const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
 const listaPacientes = document.getElementById("lista-pacientes");
-const url = "http://localhost:5000/pacientes";
+const url = "https://app-odonto-backend.vercel.app/pacientes";
 
 let pacientes = [];
 
