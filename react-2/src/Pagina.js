@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./componentes/Nav";
-import ActionsMenu from "./componentes/Actionsmenu";
+import ActionsMenu from "./componentes/ActionsMenu";
 import Tabla from "./componentes/Tabla";
 
 function Pagina() {

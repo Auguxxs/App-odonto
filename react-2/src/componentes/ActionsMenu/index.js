@@ -1,6 +1,11 @@
 import React from "react";
+import "./ActionsMenu.css";
+import Alert from "../Alert";
+import { useState } from "react";
 
 function ActionsMenu() {
+  const [mostrarAlerta, setMostrarAlerta] = useState(false);
+  const alertSwitch = () => setMostrarAlerta(!mostrarAlerta);
   return (
     <div className="actions-menu">
       <h1>Pacientes</h1>
@@ -10,21 +15,11 @@ function ActionsMenu() {
           className="btn btn-dark"
           data-toggle="modal"
           data-target="#exampleModalCenter"
+          onClick={alertSwitch}
         >
           Agregar
         </button>
-        <div
-          className="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>Ups!</strong> Algo salio mal, por favor vuelve a intentarlo
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-          ></button>
-        </div>
+        {mostrarAlerta && <Alert alertSwitch={alertSwitch} />}
       </div>
     </div>
   );

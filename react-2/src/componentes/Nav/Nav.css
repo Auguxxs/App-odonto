@@ -1,0 +1,65 @@
+@media (min-width: 992px) {
+  .navBar-expand-lg {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+}
+.bg-dark {
+  background-color: #343a40 !important;
+}
+
+.navBar {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.collapse:not(.show) {
+  /* display: none; */
+}
+
+.navBar-collapse {
+  display: flex;
+  align-items: center;
+}
+
+.navBar-nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.navBar-dark .navBar-nav .active > .nav-link,
+.navBar-dark .navBar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link {
+  color: #fff;
+}
+
+.navbar-dark .navBar-nav .nav-link {
+  color: #ffffff;
+}
+
+.nav-link {
+  display: block;
+  padding: 5px;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
